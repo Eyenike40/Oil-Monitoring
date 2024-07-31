@@ -10,14 +10,22 @@ def encode_file(file):
     return base64.b64encode(file.getvalue()).decode()
 
 def main():
-    st.set_page_config(page_title="Oil Spill Incident Reporting", layout="wide")
+    st.set_page_config(page_title="Oil Spill Incident Reporting", layout="centered")
     
+
     st.title("Oil Spill Incident Reporting Form")
+    col1, col2 = st.columns([2.8,2.2])
     
-    st.write("""
-    This form is for reporting oil spill incidents in the Niger Delta region of Nigeria. 
-    The report will enable stakeholders in oil spill incident response and management to activate the emergency response plan.
+    col1.write("""
+    This web application is designed for reporting oil spill incidents in the Niger Delta region of Nigeria. 
+    It serves as a crucial tool in the rapid response and management of environmental emergencies caused by oil spills.
+    
+    **Incident Reporting**: This form allows individuals, organizations, and authorities to report oil spill incidents 
+       quickly and accurately. By providing detailed information about the spill, you contribute to a faster and more 
+       effective response.
     """)
+
+    col2.image("Oil spill.jpg")
     
     with st.form("oil_spill_report"):
         col1, col2 = st.columns(2)
@@ -53,25 +61,25 @@ def main():
         
         submitted = st.form_submit_button("Submit Report")
         
-        # if submitted:
-        #     # Prepare data for XATA
-        #     report_data = {
-        #         "email": email,
-        #         "organization": organization,
-        #         "phone": phone,
-        #         "address": address,
-        #         "date_observed": date_observed.isoformat(),
-        #         "time_observed": time_observed.isoformat(),
-        #         "location": location,
-        #         "incident_site": incident_site,
-        #         "city_state": city_state,
-        #         "coordinates": coordinates,
-        #         "source": source,
-        #         "cause": cause,
-        #         "description": description,
-        #         "timestamp": datetime.now().isoformat(),
-        #         "images": []
-        #     }
+        if submitted:
+            # Prepare data for XATA
+            report_data = {
+                "email": email,
+                "organization": organization,
+                "phone": phone,
+                "address": address,
+                "date_observed": date_observed.isoformat(),
+                "time_observed": time_observed.isoformat(),
+                "location": location,
+                "incident_site": incident_site,
+                "city_state": city_state,
+                "coordinates": coordinates,
+                "source": source,
+                "cause": cause,
+                "description": description,
+                "timestamp": datetime.now().isoformat(),
+                "images": []
+            }
             
         #     # Handle file uploads
         #     if uploaded_files:
